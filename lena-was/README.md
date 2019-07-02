@@ -60,6 +60,8 @@ Parameter                       | Description                           | Defaul
 `resources`                     | CPU/Memory resource requests/limits   | `{}`
 `nodeSelector`                  | Node affinity                         | `{}`
 `tolerations`                   | Node tolerations                      | `{}`
+`lenaManagerIp`                 | LENA Manager IP                       | `127.0.0.1`
+`lenaManagerPort`               | LENA Manager Port                     | `7700`
 
 Refer to [values.yaml](values.yaml) for the full run-down on defaults. These are a mixture of Kubernetes and tomcat-related directives that map to environment variables. 
 

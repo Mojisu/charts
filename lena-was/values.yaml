@@ -58,3 +58,7 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+lenaManagerIp: 127.0.0.1
+
+lenaManagerPort: 7700
