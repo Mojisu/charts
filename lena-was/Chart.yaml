@@ -1,0 +1,10 @@
+apiVersion: v1
+appVersion: "7"
+description: Deploy a basic lena application server with sidecar as web archive
+  container
+maintainers:
+- email: mirsiss@lgcns.com
+  name: mirsiss
+name: lena
+version: 1.0
+icon: http://devon.lgcns.com/images/lena_gray.png
