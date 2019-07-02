@@ -5,6 +5,6 @@ description: Deploy a lena manager web
 maintainers:
 - email: mirsiss@lgcns.com
   name: mirsiss
-name: lena
+name: lena-manager
 version: 1.0
 icon: http://devon.lgcns.com/images/lena_white.png
