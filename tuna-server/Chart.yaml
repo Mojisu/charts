@@ -1,0 +1,10 @@
+apiVersion: v1
+appVersion: "7"
+description: Deploy a TunA Server
+  container
+maintainers:
+- email: mirsiss@lgcns.com
+  name: mirsiss
+name: tuna-server
+version: 1.0
+icon: https://soltech.lgcns.com/tuna/questions/media/cfc16bc952634c2da989ede453ceafdd/image.png
