@@ -10,10 +10,13 @@ metadata:
 spec:
   type: {{ .Values.service.type }}
   ports:
-    - port: {{ .Values.service.externalPort }}
-      targetPort: {{ .Values.service.internalPort }}
+    - port: 80
+      targetPort: 8080
       protocol: TCP
       name: {{ .Values.service.name }}
+    - name: collector
+      port: 6100
+      targetPort: 6100
   selector:
     app: {{ template "tomcat.name" . }}
     release: {{ .Release.Name }}

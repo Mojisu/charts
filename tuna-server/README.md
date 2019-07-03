@@ -43,16 +43,13 @@ The following table lists the configurable parameters of the tomcat chart and th
 
 Parameter                       | Description                           | Default
 ------------------------------- | ------------------------------------- | ----------------------------------------------------------
-`image.webarchive.repository`   | Sidecar image source repository name  | `ananwaresystems/webarchive`
-`image.webarchive.tag`          | `webarchive` release tag.             | `1.0`
-`image.tomcat.repository`       | Tomact image source repository name   | `lenasupport/lena-enterprise`
-`image.tomcat.tag`              | `tomcat` release tag.                 | `cent7_x86_64-1.3.0e-lab`
+`image.tomcat.repository`       | Tomact image source repository name   | `tuna/tuna-server`
+`image.tomcat.tag`              | `tomcat` release tag.                 | `2.1`
 `image.pullPolicy`              | Image pull policy                     | `IfNotPresent`
 `image.pullSecrets`             | Image pull secrets                    | `[]`
-`deploy.directory`              | Webarchive deployment directory       | `/engn001/lena/1.3/servers/APP_SERVER/webapps`
 `service.name`                  | Tomcat service name                   | `http`
 `service.externalPort`          | Kubernetes service port               | `80`
-`service.internalPort`          | Tomcat front port                     | `8180`
+`service.internalPort`          | Tomcat front port                     | `8080`
 `service.type`                  | Kubernetes service type               | `LoadBalancer`
 `readinessProbe.path`           | HTTP path to check for readiness      | `/`
 `livenessProbe.path`            | HTTP path to check for readiness      | `/`
