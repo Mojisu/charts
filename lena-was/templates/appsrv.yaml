@@ -43,6 +43,9 @@ spec:
           - -ta
           - {{ .Values.tunaServerIp }}
           name: {{ .Chart.Name }}
+          env:
+          - name: CATALINA_OPTS
+            value: -DserverName={{ template "tomcat.fullname" . }}
           image: {{ .Values.image.tomcat.repository }}:{{ .Values.image.tomcat.tag }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           volumeMounts:
