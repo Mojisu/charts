@@ -40,6 +40,8 @@ spec:
           - {{ .Values.lenaManagerIp }}:{{ .Values.lenaManagerPort}}
           - -sn
           - {{ template "tomcat.fullname" . }}
+          - -ta
+          - {{ .Values.tunaServerIp }}
           name: {{ .Chart.Name }}
           image: {{ .Values.image.tomcat.repository }}:{{ .Values.image.tomcat.tag }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
