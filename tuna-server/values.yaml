@@ -17,7 +17,7 @@ service:
   name: http
   type: LoadBalancer
   externalPort: 80
-  internalPort: 8180
+  internalPort: 8080
 
 ingress:
   enabled: false
