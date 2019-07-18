@@ -8,13 +8,13 @@ image:
     repository: ananwaresystems/webarchive
     tag: "1.0"
   tomcat:
-    repository: lenasupport/lena-enterprise
-    tag: "cent7_x86_64-1.3.0e-lab"
+    repository: lenasupport/lena-exclusive-dev
+    tag: "1.3.0e.1-cent7-openjdk8"
   pullPolicy: IfNotPresent
   pullSecrets: []
 
 deploy:
-  directory: /engn001/lena/1.3/servers/APP_SERVER/webapps
+  directory: /engn001/lena/1.3/servers/appServer/webapps
 
 service:
   name: http
@@ -36,12 +36,12 @@ ingress:
   #      - chart-example.local
 
 readinessProbe:
-  path: "/index.jsp"
+  path: "/"
   initialDelaySeconds: 60
   periodSeconds: 30
   failureThreshold: 6
 livenessProbe:
-  path: "/index.jsp"
+  path: "/"
   initialDelaySeconds: 60
   periodSeconds: 30
 
