@@ -53,7 +53,6 @@ spec:
               mountPath: {{ .Values.deploy.directory }}
           ports:
             - containerPort: {{ .Values.service.internalPort }}
-              hostPort: 8009
           livenessProbe:
             httpGet:
               path: {{ .Values.livenessProbe.path }}
