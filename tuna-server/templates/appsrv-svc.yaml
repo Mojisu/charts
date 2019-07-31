@@ -14,9 +14,14 @@ spec:
       targetPort: 8080
       protocol: TCP
       name: {{ .Values.service.name }}
-    - name: collector
+    - name: colletor-tcp
       port: 6100
       targetPort: 6100
+      protocol: TCP
+    - name: collector-udp
+      port: 6100
+      targetPort: 6100
+      protocol: UDP
   selector:
     app: {{ template "tomcat.name" . }}
     release: {{ .Release.Name }}

@@ -21,11 +21,10 @@ spec:
     spec:
       containers:
         - name: {{ .Chart.Name }}
-          image: {{ .Values.image.tomcat.repository }}:{{ .Values.image.tomcat.tag }}
+          image: {{ .Values.image.tuna.repository }}:{{ .Values.image.tuna.tag }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - containerPort: {{ .Values.service.internalPort }}
-              hostPort: 8009
           livenessProbe:
             httpGet:
               path: {{ .Values.livenessProbe.path }}

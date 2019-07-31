@@ -1,10 +1,9 @@
 apiVersion: v1
 appVersion: "7"
 description: Deploy a TunA Server
-  container
 maintainers:
 - email: mirsiss@lgcns.com
   name: mirsiss
 name: tuna-server
-version: 1.0
+version: 1.0.0
 icon: http://10.80.9.3:32769/mirsiss/devon-catalog/raw/master/tuna-server/tuna.png

@@ -43,8 +43,8 @@ The following table lists the configurable parameters of the tomcat chart and th
 
 Parameter                       | Description                           | Default
 ------------------------------- | ------------------------------------- | ----------------------------------------------------------
-`image.tomcat.repository`       | Tomact image source repository name   | `tuna/tuna-server`
-`image.tomcat.tag`              | `tomcat` release tag.                 | `2.1`
+`image.tuna.repository`         | TunA image source repository name     | `10.80.9.3:5000/tuna/tuna-server`
+`image.tuna.tag`                | `tuna` release tag.                   | `2.1.20190703`
 `image.pullPolicy`              | Image pull policy                     | `IfNotPresent`
 `image.pullSecrets`             | Image pull secrets                    | `[]`
 `service.name`                  | Tomcat service name                   | `http`
