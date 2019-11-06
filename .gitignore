@@ -1,0 +1,13 @@
+# JetBrains IDEs files
+.idea/
+*.iml
+
+# Vim files
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
+
+# Chart dependencies
+**/charts/*.tgz
