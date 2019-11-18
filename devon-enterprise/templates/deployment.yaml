@@ -43,7 +43,21 @@ spec:
               port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+          - name: redis
+            mountPath: /usr/local/tomcat/webapps/management5/WEB-INF/classes/properties/redis.properties
+            subPath: /usr/local/tomcat/webapps/management5/WEB-INF/classes/properties/redis.properties
+          - name: datasource
+            mountPath: /usr/local/tomcat/webapps/management5/WEB-INF/classes/properties/datasource.properties
+            subPath: /usr/local/tomcat/webapps/management5/WEB-INF/classes/properties/datasource.properties
       {{- with .Values.nodeSelector }}
+      volumes:
+      - name: redis
+        secret:
+          secretName: {{ include "devon-enterprise.fullname" . }}-secret-redis
+      - name: datasource
+        secret:
+          secretName: {{ include "devon-enterprise.fullname" . }}-secret-datasource
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
