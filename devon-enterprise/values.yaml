@@ -83,4 +83,20 @@ tolerations: []
 
 affinity: {}
 
-postgresql.enabled: false
+datasource:
+  default:
+    driverClass: "oracle.jdbc.driver.OracleDriver"
+    url: "jdbc:oracle:thin:@oracle.default.svc.cluster.local:1521:XE"
+    username: "devon"
+
+redis:
+  enable: true
+#  cloudhost: "http://redis-ha.default.svc.cluster.local"
+#  cloudport: 26379
+#  localhost: "http://redis-ha-default.svc.cluster.local"
+#  localport: 26379
+#  redisPassword:
+#  redis.name: redis-master
+
+postgresql:
+  enabled: false
