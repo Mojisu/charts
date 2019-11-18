@@ -23,12 +23,20 @@ spec:
       serviceAccountName: {{ template "devon-enterprise.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      volumes:
+      - name: redis
+        secret:
+          secretName: '{{ include "devon-enterprise.fullname" . }}-secret-redis'
+      - name: datasource
+        secret:
+          secretName: '{{ include "devon-enterprise.fullname" . }}-secret-datasource'
       containers:
         - name: {{ .Chart.Name }}-management
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.management.registry }}/{{ .Values.image.management.repository }}:{{ .Values.image.management.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command: ["/bin/sh", "-c", "cat /usr/local/tomcat/wwebapps/management5/WEB-INF/classes/properties/*.properties"]
           ports:
             - name: http
               containerPort: 80
@@ -43,14 +51,14 @@ spec:
               port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+          - name: redis
+            mountPath: /usr/local/tomcat/webapps/management5/WEB-INF/classes/properties/redis.properties
+            subPath: redis.properties
+          - name: datasource
+            mountPath: /usr/local/tomcat/webapps/management5/WEB-INF/classes/properties/datasource.properties
+            subPath: datasource.properties
       {{- with .Values.nodeSelector }}
-      volumes:
-      - name: redis
-        secret:
-          secretName: '{{ include "devon-enterprise.fullname" . }}-secret-redis'
-      - name: datasource
-        secret:
-          secretName: '{{ include "devon-enterprise.fullname" . }}-secret-datasource'
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
