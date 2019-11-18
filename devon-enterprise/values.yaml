@@ -8,11 +8,11 @@ image:
   management:
     registry: devon
     repository: devon-enterprise/management
-    tag: "5.3"
+    tag: 5.3
   parameter-tool:
     registry: devon
     repository: devon-enterprise/parameter-tool
-    tag: "1.0"
+    tag: 1.0
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
@@ -56,12 +56,12 @@ ingress:
   #      - devon-enterprise.local
 
 readinessProbe:
-  path: "/management5"
+  path: /management5
   initialDelaySeconds: 30
   periodSeconds: 30
   failureThreshold: 6
 livenessProbe:
-  path: "/management5"
+  path: /management5
   initialDelaySeconds: 30
   periodSeconds: 30
 
@@ -85,18 +85,14 @@ affinity: {}
 
 datasource:
   default:
-    driverClass: "oracle.jdbc.driver.OracleDriver"
-    url: "jdbc:oracle:thin:@oracle.default.svc.cluster.local:1521:XE"
-    username: "devon"
+    driverClass: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@oracle.default.svc.cluster.local:1521:XE
+    username: devon
+    password: ""
 
 redis:
   enabled: true
-#  cloudhost: "http://redis-ha.default.svc.cluster.local"
-#  cloudport: 26379
-#  localhost: "http://redis-ha-default.svc.cluster.local"
-#  localport: 26379
-#  redisPassword:
-#  redis.name: redis-master
+  name: redis-master
 
 postgresql:
   enabled: false
