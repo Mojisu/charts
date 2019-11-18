@@ -90,7 +90,7 @@ datasource:
     username: "devon"
 
 redis:
-  enable: true
+  enabled: true
 #  cloudhost: "http://redis-ha.default.svc.cluster.local"
 #  cloudport: 26379
 #  localhost: "http://redis-ha-default.svc.cluster.local"
