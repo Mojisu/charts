@@ -43,13 +43,6 @@ spec:
               port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-          volumeMounts:
-          - name: redis
-            mountPath: /usr/local/tomcat/webapps/management5/WEB-INF/classes/properties/redis.properties
-            subPath: redis.properties
-          - name: datasource
-            mountPath: /usr/local/tomcat/webapps/management5/WEB-INF/classes/properties/datasource.properties
-            subPath: datasource.properties
       {{- with .Values.nodeSelector }}
       volumes:
       - name: redis
