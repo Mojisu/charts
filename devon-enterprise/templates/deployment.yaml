@@ -36,7 +36,7 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.management.registry }}/{{ .Values.image.management.repository }}:{{ .Values.image.management.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          command: ["/bin/sh", "-c", "cat /usr/local/tomcat/wwebapps/management5/WEB-INF/classes/properties/*.properties"]
+          command: ["/bin/sh", "-c", "cat /usr/local/tomcat/webapps/management5/WEB-INF/classes/properties/*.properties"]
           ports:
             - name: http
               containerPort: 80
