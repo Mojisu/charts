@@ -52,10 +52,10 @@ spec:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
           - name: redis
-            mountPath: /usr/local/tomcat/webapps/management5/WEB-INF/classes/properties/redis.properties
+            mountPath: /usr/local/tomcat/webapps/ROOT/WEB-INF/classes/properties/redis.properties
             subPath: redis.properties
           - name: datasource
-            mountPath: /usr/local/tomcat/webapps/management5/WEB-INF/classes/properties/datasource.properties
+            mountPath: /usr/local/tomcat/webapps/ROOT/WEB-INF/classes/properties/datasource.properties
             subPath: datasource.properties
       {{- with .Values.nodeSelector }}
       nodeSelector:
