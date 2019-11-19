@@ -42,11 +42,11 @@ spec:
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: /management5/system/page/login
+              path: /system/page/login
               port: 8080
           readinessProbe:
             httpGet:
-              path: /management5/system/page/login
+              path: /system/page/login
               port: 8080
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
