@@ -38,8 +38,10 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
-  type: ClusterIP
-  port: 80
+  name: http
+  type: LoadBalancer
+  externalPort: 80
+  internalPort: 8080
 
 ingress:
   enabled: false
@@ -56,14 +58,13 @@ ingress:
   #      - devon-enterprise.local
 
 readinessProbe:
-  path: /management5
-  initialDelaySeconds: 30
-  periodSeconds: 30
-  failureThreshold: 6
+  initialDelaySeconds: 20
+  periodSeconds: 10
+  failureThreshold: 10
 livenessProbe:
-  path: /management5
-  initialDelaySeconds: 30
-  periodSeconds: 30
+  initialDelaySeconds: 20
+  periodSeconds: 10
+  failureThreshold: 10
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
