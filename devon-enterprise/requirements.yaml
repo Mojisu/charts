@@ -1,14 +1,12 @@
 dependencies:
   - name: redis-ha
-    alias: redis
     version: 4.0.3
     repository: https://kubernetes-charts.storage.googleapis.com/
-    condition: redis.enabled
+    condition: redis-ha.enabled
   - name: rabbitmq-ha
-    alias: rabbitmq
     version: 1.36.3
     repository: https://kubernetes-charts.storage.googleapis.com/
-    condition: rabbitmq.enabled
+    condition: rabbitmq-ha.enabled
   - name: postgresql
     version: 7.1.0
     repository: https://kubernetes-charts.storage.googleapis.com/
