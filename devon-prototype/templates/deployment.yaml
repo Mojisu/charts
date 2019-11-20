@@ -24,6 +24,9 @@ spec:
           emptyDir: {}
         - name: devonhome
           emptyDir: {}
+        - name: credential
+          secret:
+            secretName: {{ .Values.devonhome.repository.secretName }}
       initContainers:
         - name: war
           image: "{{ .Values.image.webarchive.repository }}:{{ .Values.image.webarchive.tag }}"
@@ -43,9 +46,8 @@ spec:
           - name: devonhome
             mountPath: /git
           - name: credential
-            secret:
-              secretName: {{ .Values.devonhome.repository.secretName }}
-            mountPath: /root
+            mountPath: /root/.ssh/id_rsa
+            subPath: id_rsa
       containers:
         - name: {{ .Chart.Name }}
           env:
