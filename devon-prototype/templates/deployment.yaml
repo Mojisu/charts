@@ -46,7 +46,7 @@ spec:
           command:
             - "sh"
             - "-c"
-            - "git clone -b {{ .Values.devonhome.repository.branch }} ${REPOSITORY_URL}"
+            - "git clone -b {{ .Values.devonhome.repository.branch }} '${REPOSITORY_URL}'"
           volumeMounts:
           - name: devonhome
             mountPath: /git
