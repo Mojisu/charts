@@ -94,9 +94,9 @@ datasource:
     username: devon
     password: ""
 
-redis:
+redis-ha:
   enabled: true
   name: redis-master
 
-rabbitmq:
+rabbitmq-ha:
   enabled: true
