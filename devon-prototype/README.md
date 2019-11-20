@@ -23,14 +23,6 @@ The command removes all the Kubernetes components associated with the chart and 
 ## Configuration
 The following table lists the configurable parameters of the WAS chart and their default values.
 
-devonhome:
-  repository:
-    url: ""
-    branch: master
-    secretName: ""
-  subPath: devon-home/devon-enterprise-prototype
-  mountPath: /data001
-
 Parameter                            | Description                                        | Default
 ------------------------------------ | -------------------------------------------------- | ----------------------------------------------------------
 `devonhome.repository.url`           | devonhome git repository url                       | ``
