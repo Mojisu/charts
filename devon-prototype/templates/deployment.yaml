@@ -45,6 +45,7 @@ spec:
           - name: credential
             secret:
               secretName: {{ .Values.devonhome.repository.secretName }}
+            mountPath: /root
       containers:
         - name: {{ .Chart.Name }}
           env:
