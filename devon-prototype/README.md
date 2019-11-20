@@ -27,7 +27,6 @@ Parameter                            | Description                              
 ------------------------------------ | -------------------------------------------------- | ----------------------------------------------------------
 `devonhome.repository.url`           | devonhome git repository url                       | ``
 `devonhome.repository.branch`        | devonhome git repository branch                    | `master`
-`devonhome.repository.secretName`    | secretName of devonhome git repositoory ssh key    | ``
 `devonhome.subPath`                  | source devonhome path in git repository            | `devon-home/devon-enterprise-prototype`
 `devonhome.mounthPath`               | target devonhome path in the container             | `/data001`
 `image.webarchive.repository`        | Sidecar image source repository name               | `devon/devon-enterprise-prototype`

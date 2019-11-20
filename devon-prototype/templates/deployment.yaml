@@ -40,10 +40,16 @@ spec:
             mountPath: /app
         - name: devon-init
           image: alpine/git:latest
+          env:
+          - name: REPOSITORY_URL
+            valueFrom:
+              secretKeyRef:
+                name: {{ include "devon-prototype.fullname" . }}-secret-repository
+                key: url
           command:
             - "sh"
             - "-c"
-            - "git clone -b {{ .Values.devonhome.repository.branch }} {{ .Values.devonhome.repository.url }}"
+            - "git clone -b {{ .Values.devonhome.repository.branch }} ${REPOSITORY_URL}"
           volumeMounts:
           - name: devonhome
             mountPath: /git

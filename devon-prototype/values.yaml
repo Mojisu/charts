@@ -20,7 +20,6 @@ devonhome:
   repository:
     url: ""
     branch: master
-    secretName: ""
   subPath: devon-home/devon-enterprise-prototype
   mountPath: /data001
 
