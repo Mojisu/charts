@@ -95,5 +95,8 @@ redis:
   enabled: true
   name: redis-master
 
+rabbitmq:
+  enabled: true
+
 postgresql:
   enabled: false
