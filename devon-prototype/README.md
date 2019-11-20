@@ -23,24 +23,37 @@ The command removes all the Kubernetes components associated with the chart and 
 ## Configuration
 The following table lists the configurable parameters of the WAS chart and their default values.
 
-Parameter                       | Description                           | Default
-------------------------------- | ------------------------------------- | ----------------------------------------------------------
-`image.webarchive.repository`   | Sidecar image source repository name  | `devon/devon-enterprise-prototype`
-`image.webarchive.tag`          | `webarchive` image tag.               | `1.0`
-`image.was.repository`          | WAS image source repository name      | `lenasupport/lena-exclusive-dev`
-`image.was.tag`                 | WAS image tag.                        | `cent7_x86_64-1.3.0e-lab`
-`image.pullPolicy`              | Image pull policy                     | `IfNotPresent`
-`image.pullSecrets`             | Image pull secrets                    | `[]`
-`deploy.directory`              | Webarchive deployment directory       | `/engn001/lena/1.3/servers/appServer/webapps`
-`service.name`                  | WAS service name                      | `http`
-`service.externalPort`          | Kubernetes service port               | `80`
-`service.internalPort`          | WAS front port                        | `8180`
-`service.type`                  | Kubernetes service type               | `LoadBalancer`
-`readinessProbe.path`           | HTTP path to check for readiness      | `/`
-`livenessProbe.path`            | HTTP path to check for readiness      | `/`
-`resources`                     | CPU/Memory resource requests/limits   | `{}`
-`nodeSelector`                  | Node affinity                         | `{}`
-`tolerations`                   | Node tolerations                      | `{}`
+devonhome:
+  repository:
+    url: ""
+    branch: master
+    secretName: ""
+  subPath: devon-home/devon-enterprise-prototype
+  mountPath: /data001
+
+Parameter                            | Description                                        | Default
+------------------------------------ | -------------------------------------------------- | ----------------------------------------------------------
+`devonhome.repository.url`           | devonhome git repository url                       | ``
+`devonhome.repository.branch`        | devonhome git repository branch                    | `master`
+`devonhome.repository.secretName`    | secretName of devonhome git repositoory ssh key    | ``
+`devonhome.subPath`                  | source devonhome path in git repository            | `devon-home/devon-enterprise-prototype`
+`devonhome.mounthPath`               | target devonhome path in the container             | `/data001`
+`image.webarchive.repository`        | Sidecar image source repository name               | `devon/devon-enterprise-prototype`
+`image.webarchive.tag`               | `webarchive` image tag.                            | `1.0`
+`image.was.repository`               | WAS image source repository name                   | `lenasupport/lena-exclusive-dev`
+`image.was.tag`                      | WAS image tag.                                     | `cent7_x86_64-1.3.0e-lab`
+`image.pullPolicy`                   | Image pull policy                                  | `IfNotPresent`
+`image.pullSecrets`                  | Image pull secrets                                 | `[]`
+`deploy.directory`                   | Webarchive deployment directory                    | `/engn001/lena/1.3/servers/appServer/webapps`
+`service.name`                       | WAS service name                                   | `http`
+`service.externalPort`               | Kubernetes service port                            | `80`
+`service.internalPort`               | WAS front port                                     | `8180`
+`service.type`                       | Kubernetes service type                            | `LoadBalancer`
+`readinessProbe.path`                | HTTP path to check for readiness                   | `/`
+`livenessProbe.path`                 | HTTP path to check for readiness                   | `/`
+`resources`                          | CPU/Memory resource requests/limits                | `{}`
+`nodeSelector`                       | Node affinity                                      | `{}`
+`tolerations`                        | Node tolerations                                   | `{}`
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 
