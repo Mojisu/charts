@@ -1,0 +1,9 @@
+apiVersion: v1
+appVersion: "7"
+description: Deploy a devon application with WAS and sidecar as web archive
+maintainers:
+- email: mirsiss@lgcns.com
+  name: mirsiss
+name: devon-prototype
+version: 1.0.0
+icon: https://soltech.lgcns.com/resources/images/logo.png

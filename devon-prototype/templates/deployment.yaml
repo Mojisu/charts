@@ -1,0 +1,95 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: {{ template "devon-prototype.fullname" . }}
+  labels:
+    app: {{ template "devon-prototype.name" . }}
+    chart: {{ template "devon-prototype.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ template "devon-prototype.name" . }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "devon-prototype.name" . }}
+        release: {{ .Release.Name }}
+    spec:
+      volumes:
+        - name: app-volume
+          emptyDir: {}
+        - name: devonhome
+          emptyDir: {}
+      initContainers:
+        - name: war
+          image: "{{ .Values.image.webarchive.repository }}:{{ .Values.image.webarchive.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command:
+          - "sh"
+          - "-c"
+          - "cp /*.war /app"
+          volumeMounts:
+          - name: app-volume
+            mountPath: /app
+        - name: devon-init
+          image: alpine/git:latest
+          command:
+            - "clone -b {{ .Values.repository.branch }} {{ .Values.repository.url }}"
+          volumeMounts:
+          - name: devonhome
+            mountPath: /git
+          - name: credential
+            secret:
+              secretName: {{ .Values.repository.secretName }}
+      containers:
+        - name: {{ .Chart.Name }}
+          env:
+          - name: JAVA_OPTS
+            value: -DserverName={{ template "devon-prototype.fullname" . }} -Ddevon.home={{ .Values.devonhome.mountPath }}/{{ .Values.devonhome.subPath }}
+          - name: POD_NAMESPACE
+            value: {{ .Release.Namespace }}
+          - name: POD_NAME
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.name
+          image: "{{ .Values.image.was.repository }}:{{ .Values.image.was.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          volumeMounts:
+          - name: app-volume
+            mountPath: {{ .Values.deploy.directory }}
+          - name: devonhome
+            mountPath: {{ .Values.devonhome.mountPath }}
+          ports:
+            - containerPort: {{ .Values.service.internalPort }}
+          livenessProbe:
+            httpGet:
+              path: {{ .Values.livenessProbe.path }}
+              port: {{ .Values.service.internalPort }}
+            initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
+          readinessProbe:
+            httpGet:
+              path: {{ .Values.readinessProbe.path }}
+              port: {{ .Values.service.internalPort }}
+            initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
+            failureThreshold: {{ .Values.readinessProbe.failureThreshold }}
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+    {{- if .Values.image.pullSecrets }}
+      imagePullSecrets:
+{{ toYaml .Values.image.pullSecrets | indent 8 }}
+    {{- end }}
+    {{- if .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml .Values.nodeSelector | indent 8 }}
+    {{- end }}
+    {{- if .Values.tolerations }}
+      tolerations:
+{{ toYaml .Values.tolerations | indent 8 }}
+    {{- end }}
