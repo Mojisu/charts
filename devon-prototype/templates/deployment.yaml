@@ -41,7 +41,8 @@ spec:
         - name: devon-init
           image: alpine/git:latest
           command:
-            - "clone -b {{ .Values.devonhome.repository.branch }} {{ .Values.devonhome.repository.url }}"
+            - "sh"
+            - "git clone -b {{ .Values.devonhome.repository.branch }} {{ .Values.devonhome.repository.url }}"
           volumeMounts:
           - name: devonhome
             mountPath: /git
