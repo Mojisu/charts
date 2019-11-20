@@ -84,6 +84,9 @@ tolerations: []
 
 affinity: {}
 
+postgresql:
+  enabled: false
+
 datasource:
   default:
     driverClass: oracle.jdbc.driver.OracleDriver
@@ -91,9 +94,9 @@ datasource:
     username: devon
     password: ""
 
-redis:
+redis-ha:
   enabled: true
   name: redis-master
 
-postgresql:
-  enabled: false
+rabbitmq-ha:
+  enabled: true
