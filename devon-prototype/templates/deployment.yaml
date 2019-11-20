@@ -42,6 +42,7 @@ spec:
           image: alpine/git:latest
           command:
             - "sh"
+            - "-c"
             - "git clone -b {{ .Values.devonhome.repository.branch }} {{ .Values.devonhome.repository.url }}"
           volumeMounts:
           - name: devonhome
