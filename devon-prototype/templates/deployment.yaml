@@ -44,7 +44,7 @@ spec:
             mountPath: /git
           - name: credential
             secret:
-              secretName: {{ .Values.repository.secretName }}
+              secretName: {{ .Values.devonhome.repository.secretName }}
       containers:
         - name: {{ .Chart.Name }}
           env:
