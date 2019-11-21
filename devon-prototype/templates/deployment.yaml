@@ -76,8 +76,10 @@ spec:
           volumeMounts:
           - name: app-volume
             mountPath: {{ .Values.deploy.directory }}
+          {{ if ne .Values.devonhome.repository.url "" }}
           - name: devonhome
             mountPath: {{ .Values.devonhome.mountPath }}
+          {{ end }}
           - name: log
             mountPath: /logs001
           ports:
