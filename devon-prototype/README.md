@@ -4,8 +4,7 @@
 
 ## Prerequisites
 - Kubernetes 1.8+ 
-
-## Prerequisites
+- Existing PersistentVolumeClaim created by devon-enterprise
 
 ## Installing the Chart
 To install the chart with the release name `my-release`:

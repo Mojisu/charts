@@ -3,10 +3,21 @@
 ## Introduction
 
 ## Prerequisite
+- Kubernetes 1.8+ 
+- Persistent Volume
 
 ## Installing the Chart
+To install the chart with the release name `my-release`:
+```bash
+$ helm install --name my-release devon-enterprise
+```
 
-## Uninstall the Chart
+## Uninstalling the Chart
+To uninstall/delete the `my-release` deployment:
+```bash
+$ helm delete my-release
+```
+The command removes all the Kubernetes components associated with the chart and deletes the release.
 
 ## Configuration
 | Parameter                               | Description                                                                        | Default                                                           |
