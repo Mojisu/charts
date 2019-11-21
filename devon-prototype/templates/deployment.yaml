@@ -24,7 +24,7 @@ spec:
           emptyDir: {}
         {{ if ne .Values.devonhome.repository.url "" }}
         - name: devonhome
-          emptyDir: {
+          emptyDir: {}
         {{ end }}
         - name: log
           persistentVolumeClaim:
