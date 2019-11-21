@@ -1,4 +1,4 @@
-apiVersion: apps/v1beta2
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ template "devon-prototype.fullname" . }}
@@ -22,8 +22,10 @@ spec:
       volumes:
         - name: app-volume
           emptyDir: {}
+        {{ if ne .Values.devonhome.repository.url "" }}
         - name: devonhome
-          emptyDir: {}
+          emptyDir: {
+        {{ end }}
         - name: log
           persistentVolumeClaim:
             claimName: {{ .Values.devonent }}
@@ -38,6 +40,7 @@ spec:
           volumeMounts:
           - name: app-volume
             mountPath: /app
+        {{ if ne .Values.devonhome.repository.url "" }}
         - name: devon-init
           image: alpine/git:latest
           env:
@@ -53,11 +56,14 @@ spec:
           volumeMounts:
           - name: devonhome
             mountPath: /git
+        {{ end }}
       containers:
         - name: {{ .Chart.Name }}
           env:
+          {{ if ne .Values.devonhome.repository.url "" }}
           - name: JAVA_OPTS
-            value: -DserverName={{ template "devon-prototype.fullname" . }} -Ddevon.home={{ .Values.devonhome.mountPath }}/{{ .Values.devonhome.subPath }}
+            value: -Ddevon.home={{ .Values.devonhome.mountPath }}/{{ .Values.devonhome.subPath }}
+          {{ end }}
           - name: POD_NAMESPACE
             value: {{ .Release.Namespace }}
           - name: POD_NAME
