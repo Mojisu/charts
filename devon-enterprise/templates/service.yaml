@@ -14,3 +14,4 @@ spec:
   selector:
     app.kubernetes.io/name: {{ include "devon-enterprise.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
+    deploymentName: {{ include "devon-enterprise.fullname" . }}-management

@@ -38,6 +38,9 @@ The command removes all the Kubernetes components associated with the chart and 
 | `image.management.registry`             | DevOn Enterprise Management image registry                                         | `devon`                                                           |
 | `image.management.repository`           | DevOn Enterprise Management image repository                                       | `devon-enterprise/management`                                     |
 | `image.management.tag`                  | DevOn Enterprise Management image tag                                              | `5.3`                                                             |
+| `image.logagent.registry`               | DevOn Enterprise logagent image registry                                           | `devon`                                                           |
+| `image.logagent.repository`             | DevOn Enterprise logagent image repository                                         | `devon-enterprise/logagent`                                     |
+| `image.logagent.tag`                    | DevOn Enterprise logagent image tag                                                | `5.3`                                                             |
 | `redis.enabled`                         | Deploy Redis within installation                                                   | `true`                                                            |
 | `redis.cloudhost`                       | Redis host address (required in case of external Redis server)                     | Generated values in secret-redis.yaml                             |
 | `redis.cloudport`                       | Redis port number (required in case of external Redis server)                      | `26379`                                                           |

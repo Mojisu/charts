@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "devon-enterprise.fullname" . }}
+  name: {{ include "devon-enterprise.fullname" . }}-logagent
   labels:
 {{ include "devon-enterprise.labels" . | indent 4 }}
 spec:
@@ -10,11 +10,13 @@ spec:
     matchLabels:
       app.kubernetes.io/name: {{ include "devon-enterprise.name" . }}
       app.kubernetes.io/instance: {{ .Release.Name }}
+      deploymentName: {{ include "devon-enterprise.fullname" . }}-logagent
   template:
     metadata:
       labels:
         app.kubernetes.io/name: {{ include "devon-enterprise.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
+        deploymentName: {{ include "devon-enterprise.fullname" . }}-logagent
     spec:
     {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
@@ -24,12 +26,6 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       volumes:
-      - name: redis
-        secret:
-          secretName: '{{ include "devon-enterprise.fullname" . }}-secret-redis'
-      - name: datasource
-        secret:
-          secretName: '{{ include "devon-enterprise.fullname" . }}-secret-datasource'
       - name: logagent
         {{- if .Values.persistentVolumeClaim.enabled }}
         persistentVolumeClaim:
@@ -38,38 +34,6 @@ spec:
         emptyDir: {}
         {{- end }}
       containers:
-        - name: {{ .Chart.Name }}-management
-          securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.management.registry }}/{{ .Values.image.management.repository }}:{{ .Values.image.management.tag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
-          ports:
-            - name: http
-              containerPort: 8080
-              protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /management5/system/page/login
-              port: 8080
-            initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
-            periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
-            failureThreshold: {{ .Values.livenessProbe.failureThreshold }}
-          readinessProbe:
-            httpGet:
-              path: /management5/system/page/login
-              port: 8080
-            initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
-            periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
-            failureThreshold: {{ .Values.readinessProbe.failureThreshold }}
-          resources:
-            {{- toYaml .Values.resources | nindent 12 }}
-          volumeMounts:
-          - name: redis
-            mountPath: /usr/local/tomcat/webapps/management5/WEB-INF/classes/properties/redis.properties
-            subPath: redis.properties
-          - name: datasource
-            mountPath: /usr/local/tomcat/webapps/management5/WEB-INF/classes/properties/datasource.properties
-            subPath: datasource.properties
         - name: {{ .Chart.Name }}-logagent
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
