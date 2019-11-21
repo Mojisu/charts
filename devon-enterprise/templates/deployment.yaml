@@ -30,6 +30,13 @@ spec:
       - name: datasource
         secret:
           secretName: '{{ include "devon-enterprise.fullname" . }}-secret-datasource'
+      - name: logagent
+        {{- if .Values.persistentVolumeClaim.enabled }}
+        persistentVolumeClaim:
+          claimName: {{ include "devon-enterprise.fullname" . }}
+        {{ else }}
+        emptyDir: {}
+        {{- end }}
       containers:
         - name: {{ .Chart.Name }}-management
           securityContext:
@@ -63,6 +70,28 @@ spec:
           - name: datasource
             mountPath: /usr/local/tomcat/webapps/management5/WEB-INF/classes/properties/datasource.properties
             subPath: datasource.properties
+        - name: {{ .Chart.Name }}-logagent
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.logagent.registry }}/{{ .Values.image.logagent.repository }}:{{ .Values.image.logagent.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+          - name: http
+            containerPort: 8080
+            protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /devon-enterprise-logagent
+              port: 8080
+          readinessProbe:
+            httpGet:
+              path: /devon-enterprise-logagent
+              port: 8080
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+          - name: logagent
+            mountPath: /logs001
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

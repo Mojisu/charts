@@ -25,6 +25,7 @@ The following table lists the configurable parameters of the WAS chart and their
 
 Parameter                            | Description                                        | Default
 ------------------------------------ | -------------------------------------------------- | ----------------------------------------------------------
+`devonent`                           | Full name of existing PVC for devon                | `devon-enterprise`
 `devonhome.repository.url`           | devonhome git repository url                       | ``
 `devonhome.repository.branch`        | devonhome git repository branch                    | `master`
 `devonhome.subPath`                  | source devonhome path in git repository            | `devon-home/devon-enterprise-prototype`

@@ -24,6 +24,9 @@ spec:
           emptyDir: {}
         - name: devonhome
           emptyDir: {}
+        - name: log
+          persistentVolumeClaim:
+            claimName: {{ .Values.devonent }}
       initContainers:
         - name: war
           image: "{{ .Values.image.webarchive.repository }}:{{ .Values.image.webarchive.tag }}"
@@ -69,6 +72,8 @@ spec:
             mountPath: {{ .Values.deploy.directory }}
           - name: devonhome
             mountPath: {{ .Values.devonhome.mountPath }}
+          - name: log
+            mountPath: /logs001
           ports:
             - containerPort: {{ .Values.service.internalPort }}
           livenessProbe:

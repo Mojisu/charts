@@ -23,6 +23,9 @@ devonhome:
   subPath: devon-home/devon-enterprise-prototype
   mountPath: /data001
 
+# managed under -
+devonent: "devon-enterprise"
+
 service:
   name: http
   type: LoadBalancer

@@ -1,0 +1,23 @@
+{{- if and .Values.plugins.enabled .Values.persistentVolumeClaim.enabled -}}
+{{- if not .Values.persistentVolumeClaim.existingClaim -}}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "devon-enterprise.fullname" . }}
+  labels:
+{{ include "devon-enterprise.labels" . | indent 4 }}
+spec:
+  accessModes:
+{{ toYaml .Values.persistentVolumeClaim.accessModes | indent 4 }}
+{{- if .Values.persistentVolumeClaim.storageClass }}
+{{- if (eq "-" .Values.persistentVolumeClaim.storageClass) }}
+  storageClassName: ""
+{{- else }}
+  storageClassName: "{{ .Values.persistentVolumeClaim.storageClass }}"
+{{- end }}
+{{- end }}
+  resources:
+    requests:
+      storage: "{{ .Values.persistentVolumeClaim.size }}"
+{{- end -}}
+{{- end -}}
