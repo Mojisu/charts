@@ -108,9 +108,9 @@ affinity: {}
 
 datasource:
   default:
-    driverClass: oracle.jdbc.driver.OracleDriver
-    url: jdbc:oracle:thin:@oracle.default.svc.cluster.local:1521:XE
-    username: devon
+    driverClass: org.postgresql.Driver
+    url: jdbc:postgresql:@postgresql.default.svc.cluster.local:5432/postgres
+    username: postgres
     password: ""
 
 redis:
@@ -121,4 +121,4 @@ rabbitmq:
   enabled: true
 
 postgresql:
-  enabled: false
+  enabled: true
