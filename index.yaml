@@ -1,0 +1,40 @@
+apiVersion: v1
+entries:
+  devon-enterprise:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: "2019-12-16T10:02:49.7569245+09:00"
+    dependencies:
+    - condition: redis.enabled
+      name: redis-ha
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 4.0.3
+    - name: rabbitmq-ha
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 1.36.3
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 7.1.0
+    description: A Helm chart for DevOn Enterprise
+    digest: 7674e217eb8b670500143a9354221cb2b21b6b2cb59a1bb85392d0206b62ca11
+    icon: https://www.lgcns.co.kr/static/images/solution/img_devon_ide_logo.png
+    name: devon-enterprise
+    urls:
+    - https://mojisu.github.io/devon-helm-chart/devon-enterprise-0.1.0.tgz
+    version: 0.1.0
+  devon-prototype:
+  - apiVersion: v1
+    appVersion: "7"
+    created: "2019-12-16T10:02:49.7617631+09:00"
+    description: Deploy a devon application with WAS and sidecar as web archive
+    digest: df89cb236fc77729c528a11da3a5225f23a114d9830e0981929b781e71877771
+    icon: https://soltech.lgcns.com/resources/images/logo.png
+    maintainers:
+    - email: mirsiss@lgcns.com
+      name: mirsiss
+    name: devon-prototype
+    urls:
+    - https://mojisu.github.io/devon-helm-chart/devon-prototype-1.0.0.tgz
+    version: 1.0.0
+generated: "2019-12-16T10:02:49.6977864+09:00"
