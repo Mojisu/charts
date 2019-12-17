@@ -3,7 +3,7 @@ entries:
   devon-enterprise:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2019-12-17T10:45:33.5663119+09:00"
+    created: "2019-12-17T10:56:14.4061167+09:00"
     dependencies:
     - condition: redis.enabled
       name: redis-ha
@@ -17,7 +17,7 @@ entries:
       repository: https://kubernetes-charts.storage.googleapis.com/
       version: 7.1.0
     description: A Helm chart for DevOn Enterprise
-    digest: 499df0cabf246d62c63b17d0461503eec42088a5d2dae05ad61e1bfb6d562a6f
+    digest: 333ed51bdea6dfd1738e0b8a19c3ecfcb6d93404bc08ee895d2d42d7140d9f2b
     icon: https://www.lgcns.co.kr/static/images/solution/img_devon_ide_logo.png
     name: devon-enterprise
     urls:
@@ -26,7 +26,7 @@ entries:
   devon-prototype:
   - apiVersion: v1
     appVersion: "7"
-    created: "2019-12-17T10:45:33.5710257+09:00"
+    created: "2019-12-17T10:56:14.4083966+09:00"
     description: Deploy a devon application with WAS and sidecar as web archive
     digest: df89cb236fc77729c528a11da3a5225f23a114d9830e0981929b781e71877771
     icon: https://soltech.lgcns.com/resources/images/logo.png
@@ -37,4 +37,4 @@ entries:
     urls:
     - https://mojisu.github.io/charts/devon-prototype-1.0.0.tgz
     version: 1.0.0
-generated: "2019-12-17T10:45:33.5439931+09:00"
+generated: "2019-12-17T10:56:14.3809571+09:00"
