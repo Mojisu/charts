@@ -109,7 +109,7 @@ affinity: {}
 datasource:
   default:
     driverClass: org.postgresql.Driver
-    url: jdbc:postgresql:@postgresql.default.svc.cluster.local:5432/postgres
+    url: ""
     username: postgres
     password: ""
 
