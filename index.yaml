@@ -3,7 +3,7 @@ entries:
   devon-enterprise:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2019-12-17T12:31:55.8618247+09:00"
+    created: "2019-12-17T22:50:00.882889+09:00"
     dependencies:
     - condition: redis.enabled
       name: redis-ha
@@ -26,7 +26,7 @@ entries:
   devon-prototype:
   - apiVersion: v1
     appVersion: "7"
-    created: "2019-12-17T12:31:55.8659289+09:00"
+    created: "2019-12-17T22:50:00.8877246+09:00"
     description: Deploy a devon application with WAS and sidecar as web archive
     digest: df89cb236fc77729c528a11da3a5225f23a114d9830e0981929b781e71877771
     icon: https://soltech.lgcns.com/resources/images/logo.png
@@ -37,4 +37,18 @@ entries:
     urls:
     - https://mojisu.github.io/charts/devon-prototype-1.0.0.tgz
     version: 1.0.0
-generated: "2019-12-17T12:31:55.8362164+09:00"
+  lena:
+  - apiVersion: v1
+    appVersion: "7"
+    created: "2019-12-17T22:50:00.8920355+09:00"
+    description: Deploy a basic lena application server with sidecar as web archive
+    digest: eb820534782e5a9976669a05bc493eb38712f4bef8d103f3f66ff113ec882a21
+    icon: http://devon.lgcns.com/images/lena_gray.png
+    maintainers:
+    - email: mirsiss@lgcns.com
+      name: mirsiss
+    name: lena
+    urls:
+    - https://mojisu.github.io/charts/lena-1.0.0.tgz
+    version: 1.0.0
+generated: "2019-12-17T22:50:00.8461577+09:00"
