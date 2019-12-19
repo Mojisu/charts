@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  server:
+  manager:
     registry: docker.io
     repository: 'jjobs/jjob-manager'
     tag: latest
