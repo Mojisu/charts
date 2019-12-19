@@ -34,7 +34,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
           - name: JJOB_SERVER_ID
-            value: 1
+            value: "1"
           ports:
             - name: http
               containerPort: 8080
