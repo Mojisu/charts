@@ -15,6 +15,18 @@ spec:
       targetPort: 19000
       protocol: TCP
       name: tcp
+    - port: 19001
+      targetPort: 19001
+      protocol: TCP
+      name: tcp
+    - port: 19002
+      targetPort: 19002
+      protocol: TCP
+      name: tcp
+    - port: 19003
+      targetPort: 19003
+      protocol: TCP
+      name: tcp
   selector:
     app.kubernetes.io/name: {{ include "jjobs.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
