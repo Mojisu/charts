@@ -39,8 +39,17 @@ spec:
             - name: http
               containerPort: 8080
               protocol: TCP
-            - name: tcp
+            - name: tcp0
               containerPort: 19000
+              protocol: TCP
+            - name: tcp1
+              containerPort: 19001
+              protocol: TCP
+            - name: tcp2
+              containerPort: 19002
+              protocol: TCP
+            - name: tcp3
+              containerPort: 19003
               protocol: TCP
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
