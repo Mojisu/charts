@@ -27,11 +27,14 @@ spec:
             {{- toYaml .Values.podSecurityContext | nindent 8 }}
       hostname: "jjob-server.local"
       containers:
-        - name: {{ .Chart.Name }}
+        - name: server
           securityContext:
                 {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.server.registry }}/{{ .Values.image.server.repository }}:{{ .Values.image.server.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+          - name: JJOB_SERVER_ID
+            value: 1
           ports:
             - name: http
               containerPort: 8080
