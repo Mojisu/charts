@@ -3,7 +3,7 @@ entries:
   activemq-artemis:
   - apiVersion: v1
     appVersion: 2.6.2
-    created: "2019-12-19T14:29:08.6462219+09:00"
+    created: "2019-12-19T14:36:23.0610472+09:00"
     description: a multi-protocol, embeddable, very high performance, clustered, asynchronous
       messaging system.
     digest: 970415e63d7b5daf19eefc24efaf62a959994d94a6a0fc239c10982a6e57bc54
@@ -30,7 +30,7 @@ entries:
   devon-enterprise:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2019-12-19T14:29:08.7028968+09:00"
+    created: "2019-12-19T14:36:23.0948083+09:00"
     dependencies:
     - condition: redis.enabled
       name: redis-ha
@@ -53,7 +53,7 @@ entries:
   devon-prototype:
   - apiVersion: v1
     appVersion: "7"
-    created: "2019-12-19T14:29:08.7078181+09:00"
+    created: "2019-12-19T14:36:23.1066172+09:00"
     description: Deploy a devon application with WAS and sidecar as web archive
     digest: df89cb236fc77729c528a11da3a5225f23a114d9830e0981929b781e71877771
     icon: https://soltech.lgcns.com/resources/images/logo.png
@@ -64,20 +64,10 @@ entries:
     urls:
     - https://mojisu.github.io/charts/devon-prototype-1.0.0.tgz
     version: 1.0.0
-  jjobs:
-  - apiVersion: v1
-    appVersion: "1.0"
-    created: "2019-12-19T14:29:08.7108998+09:00"
-    description: A Helm chart for J-Jobs
-    digest: 74964e1f6b5a673e8edc54453fc70b021705721042ab770e402b72345f75d3c7
-    name: jjobs
-    urls:
-    - https://mojisu.github.io/charts/jjobs-0.1.0.tgz
-    version: 0.1.0
   lena:
   - apiVersion: v1
     appVersion: "7"
-    created: "2019-12-19T14:29:08.7151938+09:00"
+    created: "2019-12-19T14:36:23.1109957+09:00"
     description: Deploy a basic lena application server with sidecar as web archive
     digest: eb820534782e5a9976669a05bc493eb38712f4bef8d103f3f66ff113ec882a21
     icon: http://devon.lgcns.com/images/lena_gray.png
@@ -91,7 +81,7 @@ entries:
   lena-manager:
   - apiVersion: v1
     appVersion: "7"
-    created: "2019-12-19T14:29:08.7186085+09:00"
+    created: "2019-12-19T14:36:23.1155131+09:00"
     description: Deploy a lena manager web container
     digest: 57d9c92464ad66b67537069ffd946e53a3400abd9c461659c8b37ecf86daba73
     icon: http://devon.lgcns.com/images/lena_white.png
@@ -105,7 +95,7 @@ entries:
   tuna-server:
   - apiVersion: v1
     appVersion: "7"
-    created: "2019-12-19T14:29:08.7221518+09:00"
+    created: "2019-12-19T14:36:23.120682+09:00"
     description: Deploy a TunA Server
     digest: 20b206da5a5ea74766f3aad63045bb71e3b648fb2849d78bfa24e0599bf68c39
     icon: http://10.80.9.3:32769/mirsiss/devon-catalog/raw/master/tuna-server/tuna.png
@@ -116,4 +106,4 @@ entries:
     urls:
     - https://mojisu.github.io/charts/tuna-server-1.0.0.tgz
     version: 1.0.0
-generated: "2019-12-19T14:29:08.6263453+09:00"
+generated: "2019-12-19T14:36:23.0549458+09:00"
