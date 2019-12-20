@@ -27,6 +27,10 @@ spec:
       targetPort: 19003
       protocol: TCP
       name: tcp3
+    - port: 19004
+      targetPort: 19004
+      protocol: TCP
+      name: tcp3
   selector:
     app.kubernetes.io/name: {{ include "jjobs.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}

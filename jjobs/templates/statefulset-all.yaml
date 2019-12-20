@@ -50,6 +50,9 @@ spec:
             - name: tcp3
               containerPort: 19003
               protocol: TCP
+            - name: tcp4
+              containerPort: 19004
+              protocol: TCP
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
