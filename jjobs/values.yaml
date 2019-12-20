@@ -5,13 +5,9 @@
 replicaCount: 1
 
 image:
-  manager:
+  all:
     registry: docker.io
-    repository: 'jjobs/jjob-manager'
-    tag: latest
-  server:
-    registry: docker.io
-    repository: 'jjobs/jjob-server'
+    repository: 'jjobs/jjob-all'
     tag: latest
   pullPolicy: Always
 

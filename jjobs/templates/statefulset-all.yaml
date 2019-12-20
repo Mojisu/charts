@@ -1,7 +1,7 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
-  name: {{ include "jjobs.fullname" . }}-manager
+  name: {{ include "jjobs.fullname" . }}-all
   labels:
 {{ include "jjobs.labels" . | indent 4 }}
 spec:
@@ -10,13 +10,13 @@ spec:
     matchLabels:
       app.kubernetes.io/name: {{ include "jjobs.name" . }}
       app.kubernetes.io/instance: {{ .Release.Name }}
-      deploymentName: {{ include "jjobs.fullname" . }}-manager
+      deploymentName: {{ include "jjobs.fullname" . }}-all
   template:
     metadata:
       labels:
         app.kubernetes.io/name: {{ include "jjobs.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
-        deploymentName: {{ include "jjobs.fullname" . }}-manager
+        deploymentName: {{ include "jjobs.fullname" . }}-all
     spec:
     {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
@@ -29,26 +29,24 @@ spec:
         - name: manager
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.manager.registry }}/{{ .Values.image.manager.repository }}:{{ .Values.image.manager.tag }}"
+          image: "{{ .Values.image.all.registry }}/{{ .Values.image.all.repository }}:{{ .Values.image.all.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-          - name: http
-            containerPort: 8080
-            protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /jjob-manager
-              port: 8080
-            initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
-            periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
-            failureThreshold: {{ .Values.livenessProbe.failureThreshold }}
-          readinessProbe:
-            httpGet:
-              path: /jjob-manager
-              port: 8080
-            initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
-            periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
-            failureThreshold: {{  .Values.readinessProbe.failureThreshold }}
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+            - name: tcp0
+              containerPort: 19000
+              protocol: TCP
+            - name: tcp1
+              containerPort: 19001
+              protocol: TCP
+            - name: tcp2
+              containerPort: 19002
+              protocol: TCP
+            - name: tcp3
+              containerPort: 19003
+              protocol: TCP
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
