@@ -26,11 +26,14 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
-        - name: manager
+        - name: all
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.all.registry }}/{{ .Values.image.all.repository }}:{{ .Values.image.all.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: JJOB_SERVER_ID
+              value: "1-1"
           ports:
             - name: http
               containerPort: 8080
