@@ -2,8 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "jjobs.fullname" . }}-agent
-  labels:
-  {{ include "jjobs.labels" . | indent 4 }}
+  labels: {{ include "jjobs.labels" . | indent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
