@@ -43,7 +43,7 @@ spec:
             - -c
             - cp -R /devon-batch-prototype /app
           volumeMounts:
-            - mountPath: /app
+            - mountPath: /app/devon-batch-prototype
               name: app-volume
       containers:
         - name: jjob-agent
