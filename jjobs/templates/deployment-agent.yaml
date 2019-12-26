@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "jjobs.fullname" . }}-agent
+  labels:
+  {{ include "jjobs.labels" . | indent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "jjobs.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+      deploymentName: {{ include "jjobs.fullname" . }}-agent
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "jjobs.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+        deploymentName: {{ include "jjobs.fullname" . }}-agent
+    spec:
+      volumes:
+        - name: app-volume
+          emptyDir: {}
+        - name: devonhome
+          persistentVolumeClaim:
+            claimName: devonhome-batch
+      initContainers:
+        - name: war
+          image: 10.80.9.3:5000/devon-batch-prototype:e5b3a3a4f82390d9494acc96e2117cd0caa1dff5
+          imagePullPolicy: Always
+          command:
+            - sh
+            - -c
+            - mkdir ./devon-batch-prototype;unzip ./devon-batch-prototype.war -d ./devon-batch-prototype
+          volumeMounts:
+            - mountPath: /devon-batch-prototype
+              name: app-volume
+      containers:
+        - name: jjob-agent
+          securityContext:
+            allowPrivilegeEscalation: false
+            privileged: false
+            procMount: Default
+            readOnlyRootFilesystem: false
+            runAsNonRoot: false
+          image: 10.80.9.3:5000/jjobs/jjob-agent:latest
+          imagePullPolicy: Always
+          env:
+            - name: BATCH_HOME
+              value: /engn001/jjobs/agent
+            - name: JJOB_SERVER_SERVICE_IP
+              value: 10.42.0.233
+          resources: {}
+{{/*          lifecycle:*/}}
+{{/*            postStart:*/}}
+{{/*              exec:*/}}
+{{/*                command:*/}}
+{{/*                  - /engn001/jjobs/start_agent.sh*/}}
+          volumeMounts:
+            - mountPath: /data001/devonhome/batch/devon-batch-prototype
+              name: devonhome
+            - mountPath: /engn001/jjobs/devon-batch-prototype
+              name: app-volume
