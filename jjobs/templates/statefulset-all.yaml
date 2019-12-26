@@ -29,7 +29,7 @@ spec:
         - name: all
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.all.registry }}/{{ .Values.image.all.repository }}:{{ .Values.image.all.tag }}"
+          image: 10.80.9.3:5000/jjobs/jjob-all:latest
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: JJOB_SERVER_ID

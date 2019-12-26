@@ -5,7 +5,7 @@ metadata:
   labels:
 {{ include "jjobs.labels" . | indent 4 }}
 spec:
-  type: {{ .Values.service.type }}
+  type: NodePort
   ports:
     - port: {{ .Values.service.externalPort }}
       targetPort: {{ .Values.service.internalPort }}
