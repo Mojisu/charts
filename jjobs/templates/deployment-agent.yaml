@@ -58,9 +58,9 @@ spec:
             - name: DEVONCONTEXT
               value: /engn001/jjobs/devon-batch-prototype/WEB-INF
             - name: DEVONBATCHHOME
-              value: /data001/devonhome/batch/devon-batch-prototype
+              value: /engn001/jjobs/devon-batch-prototype/WEB-INF/devonhome-batch
             - name: DEVONONLINEHOME
-              value: /data001/devonhome/online/devon-enterprise-prototype
+              value: /engn001/jjobs/devon-batch-prototype/WEB-INF/devonhome
           ports:
             - name: http
               containerPort: 8080
