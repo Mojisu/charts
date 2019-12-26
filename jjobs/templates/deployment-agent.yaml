@@ -28,17 +28,16 @@ spec:
       volumes:
         - name: app-volume
           emptyDir: {}
-        - name: devonhome
+        - name: devonhome-batch
           persistentVolumeClaim:
             claimName: devonhome-batch
+        - name: devonhome-online
+          persistentVolumeClaim:
+            claimName: devonhome-online
       initContainers:
         - name: war
           image: 10.80.9.3:5000/devon-batch-prototype:e5b3a3a4f82390d9494acc96e2117cd0caa1dff5
           imagePullPolicy: Always
-          command:
-            - sh
-            - -c
-            - mkdir devon-batch-prototype;unzip devon-batch-prototype.war -d devon-batch-prototype
           volumeMounts:
             - mountPath: /devon-batch-prototype
               name: app-volume
@@ -52,6 +51,12 @@ spec:
               value: /engn001/jjobs/agent
             - name: JJOB_SERVER_SERVICE_IP
               value: 10.42.0.233
+            - name: DEVONCONTEXT
+              value: /engn001/jjobs/devon-batch-prototype/WEB-INF
+            - name: DEVONBATCHHOME
+              value: /data001/devonhome/batch/devon-batch-prototype
+            - name: DEVONONLINEHOME
+              value: /data001/devonhome/online/devon-enterprise-prototype
           ports:
             - name: http
               containerPort: 8080
@@ -59,7 +64,9 @@ spec:
           resources: {}
           volumeMounts:
             - mountPath: /data001/devonhome/batch/devon-batch-prototype
-              name: devonhome
+              name: devonhome-batch
+            - mountPath: /data001/devonhome/online/devon-enterprise-prototype
+              name: devonhome-online
             - mountPath: /engn001/jjobs/devon-batch-prototype
               name: app-volume
           lifecycle:
