@@ -38,10 +38,19 @@ spec:
           command:
             - sh
             - -c
-            - mkdir ./devon-batch-prototype;unzip ./devon-batch-prototype.war -d ./devon-batch-prototype
+            - mkdir devon-batch-prototype;unzip devon-batch-prototype.war -d devon-batch-prototype
           volumeMounts:
             - mountPath: /devon-batch-prototype
               name: app-volume
+          lifecycle:
+            postStart:
+              exec:
+                command:
+                  - /engn001/jjobs/start_agent.sh
+          tty: true
+          stdin: true
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
       containers:
         - name: jjob-agent
           securityContext: {}
