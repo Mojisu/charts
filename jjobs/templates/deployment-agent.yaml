@@ -38,8 +38,12 @@ spec:
         - name: war
           image: 10.80.9.3:5000/devon-batch-prototype:e5b3a3a4f82390d9494acc96e2117cd0caa1dff5
           imagePullPolicy: Always
+          command:
+            - sh
+            - -c
+            - cp -R /devon-batch-prototype /app
           volumeMounts:
-            - mountPath: /devon-batch-prototype
+            - mountPath: /app
               name: app-volume
       containers:
         - name: jjob-agent
