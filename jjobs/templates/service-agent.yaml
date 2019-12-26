@@ -5,7 +5,28 @@ metadata:
   labels:
 {{ include "jjobs.labels" . | indent 4 }}
 spec:
-  type: LoadBalancer
+  type: NodePort
+  ports:
+    - port: 19000
+      targetPort: 19000
+      protocol: TCP
+      name: tcp0
+    - port: 19001
+      targetPort: 19001
+      protocol: TCP
+      name: tcp1
+    - port: 19002
+      targetPort: 19002
+      protocol: TCP
+      name: tcp2
+    - port: 19003
+      targetPort: 19003
+      protocol: TCP
+      name: tcp3
+    - port: 19004
+      targetPort: 19004
+      protocol: TCP
+      name: tcp4
   selector:
     app.kubernetes.io/name: {{ include "jjobs.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
