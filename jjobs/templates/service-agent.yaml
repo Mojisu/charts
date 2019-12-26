@@ -5,7 +5,7 @@ metadata:
   labels:
 {{ include "jjobs.labels" . | indent 4 }}
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app.kubernetes.io/name: {{ include "jjobs.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
