@@ -8,16 +8,23 @@ spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ include "jjobs.name" . }}
-      app.kubernetes.io/instance: {{ .Release.Name }}
+      app.kubernetes.io/name: jjobs
+      app.kubernetes.io/instance: jjobs
       deploymentName: jjob-agent
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: {{ include "jjobs.name" . }}
-        app.kubernetes.io/instance: {{ .Release.Name }}
+        app.kubernetes.io/name: jjobs
+        app.kubernetes.io/instance: jjobs
         deploymentName: jjob-agent
     spec:
+    {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      serviceAccountName: {{ template "jjobs.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
       volumes:
         - name: app-volume
           emptyDir: {}
@@ -37,12 +44,7 @@ spec:
               name: app-volume
       containers:
         - name: jjob-agent
-          securityContext:
-            allowPrivilegeEscalation: false
-            privileged: false
-            procMount: Default
-            readOnlyRootFilesystem: false
-            runAsNonRoot: false
+          securityContext: {}
           image: 10.80.9.3:5000/jjobs/jjob-agent:latest
           imagePullPolicy: Always
           env:
@@ -50,9 +52,16 @@ spec:
               value: /engn001/jjobs/agent
             - name: JJOB_SERVER_SERVICE_IP
               value: 10.42.0.233
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
           resources: {}
           volumeMounts:
             - mountPath: /data001/devonhome/batch/devon-batch-prototype
               name: devonhome
             - mountPath: /engn001/jjobs/devon-batch-prototype
               name: app-volume
+      nodeSelector: {}
+      tolerations: []
+      affinity: {}

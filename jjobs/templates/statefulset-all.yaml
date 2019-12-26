@@ -8,14 +8,14 @@ spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ include "jjobs.name" . }}
-      app.kubernetes.io/instance: {{ .Release.Name }}
+      app.kubernetes.io/name: jjobs
+      app.kubernetes.io/instance: jjobs
       deploymentName: jjob-all
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: {{ include "jjobs.name" . }}
-        app.kubernetes.io/instance: {{ .Release.Name }}
+        app.kubernetes.io/name: jjobs
+        app.kubernetes.io/instance: jjobs
         deploymentName: jjob-all
     spec:
     {{- with .Values.imagePullSecrets }}
