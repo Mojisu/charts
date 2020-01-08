@@ -3,4 +3,4 @@ appVersion: "1.0"
 description: A Helm chart for J-Jobs
 name: jjobs
 version: 0.1.0
-icon: ""
+icon: https://soltech.lgcns.com/jjobs/articles/media/2172ee062c2c4de3b6d559b7dc462a8e/logo_green_100.png
