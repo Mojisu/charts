@@ -122,3 +122,6 @@ rabbitmq:
 
 postgresql:
   enabled: true
+
+redis-ha:
+  hardAntiAffinity: false
