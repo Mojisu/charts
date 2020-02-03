@@ -108,6 +108,7 @@ affinity: {}
 
 datasource:
   default:
+    database: postgresql
     driverClass: org.postgresql.Driver
     url: ""
     username: postgres
