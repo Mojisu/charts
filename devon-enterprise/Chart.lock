@@ -1,12 +1,12 @@
 dependencies:
 - name: redis-ha
-  repository: https://kubernetes-charts.storage.googleapis.com/
+  repository: https://charts.helm.sh/stable
   version: 4.4.0
 - name: rabbitmq-ha
-  repository: https://kubernetes-charts.storage.googleapis.com/
+  repository: https://charts.helm.sh/stable
   version: 1.38.2
 - name: postgresql
-  repository: https://kubernetes-charts.storage.googleapis.com/
+  repository: https://charts.helm.sh/stable
   version: 7.1.0
-digest: sha256:9e9b5403ae23315730da2b15644bf19d19abbf0facd2a75090c2892427566ccd
-generated: "2020-02-21T15:04:17.107243+09:00"
+digest: sha256:54ed169be817a19c32389f2aef78ba06a62ab1f1a683a8cd65bc0a549e4f7601
+generated: "2021-09-11T20:54:31.4335813+09:00"
