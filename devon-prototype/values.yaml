@@ -5,8 +5,8 @@ replicaCount: 1
 
 image:
   webarchive:
-    repository: ananwaresystems/webarchive
-    tag: "1.0"
+    repository: devonent/prototype
+    tag: "latest"
   was:
     repository: lenasupport/lena-standard
     tag: "latest"
@@ -24,7 +24,7 @@ devonhome:
   mountPath: /data001
 
 # managed under -
-devonent: "devon-enterprise"
+devonent: "devon-enterprise-devon-enterprise"
 
 service:
   name: http

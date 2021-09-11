@@ -108,6 +108,7 @@ affinity: {}
 
 datasource:
   default:
+    database: postgresql
     driverClass: org.postgresql.Driver
     url: ""
     username: postgres
@@ -122,3 +123,6 @@ rabbitmq:
 
 postgresql:
   enabled: true
+
+redis-ha:
+  hardAntiAffinity: false

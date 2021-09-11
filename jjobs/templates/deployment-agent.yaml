@@ -1,0 +1,87 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jjob-agent
+  labels:
+{{ include "jjobs.labels" . | indent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: jjobs
+      app.kubernetes.io/instance: jjobs
+      deploymentName: jjob-agent
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: jjobs
+        app.kubernetes.io/instance: jjobs
+        deploymentName: jjob-agent
+    spec:
+    {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      serviceAccountName: {{ template "jjobs.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      volumes:
+        - name: app-volume
+          emptyDir: {}
+        - name: devonhome-batch
+          persistentVolumeClaim:
+            claimName: devonhome-batch
+        - name: devonhome-online
+          persistentVolumeClaim:
+            claimName: devonhome-online
+      initContainers:
+        - name: war
+          image: 10.80.9.3:5000/devon-batch-prototype:e5b3a3a4f82390d9494acc96e2117cd0caa1dff5
+          imagePullPolicy: Always
+          command:
+            - sh
+            - -c
+            - cp -R /devon-batch-prototype /app
+          volumeMounts:
+            - mountPath: /app/devon-batch-prototype
+              name: app-volume
+      containers:
+        - name: jjob-agent
+          securityContext: {}
+          image: 10.80.9.3:5000/jjobs/jjob-agent:latest
+          imagePullPolicy: Always
+          env:
+            - name: BATCH_HOME
+              value: /engn001/jjobs/agent
+            - name: JJOB_SERVER_SERVICE_IP
+              value: 10.42.0.233
+            - name: DEVONCONTEXT
+              value: /engn001/jjobs/devon-batch-prototype/WEB-INF
+            - name: DEVONBATCHHOME
+              value: /engn001/jjobs/devon-batch-prototype/WEB-INF/devonhome-batch
+            - name: DEVONONLINEHOME
+              value: /engn001/jjobs/devon-batch-prototype/WEB-INF/devonhome
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          resources: {}
+          volumeMounts:
+            - mountPath: /data001/devonhome/batch/devon-batch-prototype
+              name: devonhome-batch
+            - mountPath: /data001/devonhome/online/devon-enterprise-prototype
+              name: devonhome-online
+            - mountPath: /engn001/jjobs/devon-batch-prototype
+              name: app-volume
+          lifecycle:
+            postStart:
+              exec:
+                command:
+                  - /engn001/jjobs/start_agent.sh
+          tty: true
+          stdin: true
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+      nodeSelector: {}
+      tolerations: []
+      affinity: {}

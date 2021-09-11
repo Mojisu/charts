@@ -1,12 +1,12 @@
 dependencies:
 - name: redis-ha
   repository: https://kubernetes-charts.storage.googleapis.com/
-  version: 4.0.3
+  version: 4.4.0
 - name: rabbitmq-ha
   repository: https://kubernetes-charts.storage.googleapis.com/
-  version: 1.36.3
+  version: 1.38.2
 - name: postgresql
   repository: https://kubernetes-charts.storage.googleapis.com/
   version: 7.1.0
-digest: sha256:d3a2c808b6232c11732cd8c9bbeb0b08c9dbde375055460a947f10d6b102fc24
-generated: "2019-11-15T15:59:18.668006372+09:00"
+digest: sha256:9e9b5403ae23315730da2b15644bf19d19abbf0facd2a75090c2892427566ccd
+generated: "2020-02-21T15:04:17.107243+09:00"

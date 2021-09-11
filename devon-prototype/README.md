@@ -24,15 +24,15 @@ The following table lists the configurable parameters of the WAS chart and their
 
 Parameter                            | Description                                        | Default
 ------------------------------------ | -------------------------------------------------- | ----------------------------------------------------------
-`devonent`                           | Full name of existing PVC for devon                | `devon-enterprise`
+`devonent`                           | Full name of existing devon-enterprise app or pvc  | `devon-enterprise-devon-enterprise`
 `devonhome.repository.url`           | devonhome git repository url                       | ``
 `devonhome.repository.branch`        | devonhome git repository branch                    | `master`
 `devonhome.subPath`                  | source devonhome path in git repository            | `devon-home/devon-enterprise-prototype`
 `devonhome.mounthPath`               | target devonhome path in the container             | `/data001`
-`image.webarchive.repository`        | Sidecar image source repository name               | `devon/devon-enterprise-prototype`
-`image.webarchive.tag`               | `webarchive` image tag.                            | `1.0`
+`image.webarchive.repository`        | Sidecar image source repository name               | `devonent/prototype`
+`image.webarchive.tag`               | `webarchive` image tag.                            | `latest`
 `image.was.repository`               | WAS image source repository name                   | `lenasupport/lena-exclusive-dev`
-`image.was.tag`                      | WAS image tag.                                     | `cent7_x86_64-1.3.0e-lab`
+`image.was.tag`                      | WAS image tag.                                     | `latest`
 `image.pullPolicy`                   | Image pull policy                                  | `IfNotPresent`
 `image.pullSecrets`                  | Image pull secrets                                 | `[]`
 `deploy.directory`                   | Webarchive deployment directory                    | `/engn001/lena/1.3/servers/appServer/webapps`
