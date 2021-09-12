@@ -126,3 +126,4 @@ postgresql:
 
 redis-ha:
   hardAntiAffinity: false
+  redisPassword:
