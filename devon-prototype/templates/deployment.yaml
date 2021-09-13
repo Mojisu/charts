@@ -60,6 +60,10 @@ spec:
       containers:
         - name: {{ .Chart.Name }}
           env:
+          {{- range .Values.env }}
+          - name: {{ .name }}
+            value: {{ .value }}
+          {{- end }}
           {{ if ne .Values.devonhome.repository.url "" }}
           - name: JAVA_OPTS
             value: -Ddevon.home={{ .Values.devonhome.mountPath }}/{{ .Values.devonhome.subPath }} {{ .Values.javaOpt }}

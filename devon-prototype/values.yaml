@@ -27,6 +27,7 @@ devonhome:
 devonent: "devon-enterprise"
 
 javaOpt: ""
+env: []
 
 service:
   name: http
