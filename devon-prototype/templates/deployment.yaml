@@ -42,7 +42,7 @@ spec:
             mountPath: /app
         {{ if ne .Values.devonhome.repository.url "" }}
         - name: devon-init
-          image: alpine/git:latest
+          image: {{ .Values.devonhome.git.image }}
           env:
           - name: REPOSITORY_URL
             valueFrom:

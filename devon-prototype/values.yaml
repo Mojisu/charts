@@ -22,6 +22,8 @@ devonhome:
     branch: master
   subPath: devon-home/devon-enterprise-prototype
   mountPath: /data001
+  git:
+    image:
 
 # managed under -
 devonent: "devon-enterprise"
