@@ -62,7 +62,7 @@ spec:
           env:
           {{ if ne .Values.devonhome.repository.url "" }}
           - name: JAVA_OPTS
-            value: -Ddevon.home={{ .Values.devonhome.mountPath }}/{{ .Values.devonhome.subPath }}
+            value: -Ddevon.home={{ .Values.devonhome.mountPath }}/{{ .Values.devonhome.subPath }} {{ .Values.javaOpt }}
           {{ end }}
           - name: POD_NAMESPACE
             value: {{ .Release.Namespace }}

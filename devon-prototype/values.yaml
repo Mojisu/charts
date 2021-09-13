@@ -24,7 +24,9 @@ devonhome:
   mountPath: /data001
 
 # managed under -
-devonent: "devon-enterprise-devon-enterprise"
+devonent: "devon-enterprise"
+
+javaOpt: ""
 
 service:
   name: http
